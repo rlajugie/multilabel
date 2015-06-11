@@ -4,21 +4,27 @@
 
 ## Dependencies
 
-### MOSEK
+#### MOSEK
 
-### CVX
+https://www.mosek.com/
 
-### Max-flow / min-cut
+#### CVX
 
-[Matlab Wrapper by Andrew Delong](http://vision.csd.uwo.ca/wiki/vision/upload/d/d7/Bk_matlab.zip)
+http://cvxr.com/cvx/download/
 
-### LIBLINEAR
+#### Max-flow / min-cut
+
+Matlab Wrapper by Andrew Delong.
+http://vision.csd.uwo.ca/wiki/vision/upload/d/d7/Bk_matlab.zip
+
+#### LIBLINEAR
 
 http://www.csie.ntu.edu.tw/~cjlin/liblinear/
 
-### Low-Rank Optimization on the Cone of Positive Semidefinite Matrices
+#### Low-Rank Optimization on the Cone of Positive Semidefinite Matrices
 
-[Implementation by Journee](http://www.montefiore.ulg.ac.be/~journee/Low_rank_optimization.zip)
+Implementation by Journee.
+http://www.montefiore.ulg.ac.be/~journee/Low_rank_optimization.zip
 
 ## Running the code
 

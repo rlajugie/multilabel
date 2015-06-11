@@ -6,18 +6,19 @@ function y_pred = decoding_model(W, A, x, params)
 
 y_pred  = zeros(N, V);
 
-fprintf('performing the decoding...\n');
+fprintf('performing the decoding and rounding...\n');
 
 for i = 1:N
     
-    if mod(i, floor(N/3))==0
-        fprintf('computing the decoding for example %3d / %3d\n', i, N);
+    if mod(i, 100)==0
+        fprintf('computing the decoding for example %8d/%8d\n', i, N);
     end
     
-    xi      = x(i, :);
+    % selecting an example
+    xi  = x(i, :);
+    H   = W' * xi';
     
-    H = W' * xi';
-    
+    % solving the decoding with sdp because it is tighter than spectral
     switch params.relaxation
         case 'graph-cut'
             [u, U, obj] = graph_cut(H, A);

@@ -1,4 +1,4 @@
-function [dW, dA] = stochastic_subgradient(xi, yi, W, A, lambda_w, lambda_a, params)
+function [dW, dA] = get_subgradient(xi, yi, W, A, lambda_w, lambda_a, params)
 
 switch params.loss
     case 'hamming'

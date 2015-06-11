@@ -1,11 +1,11 @@
-function [ us, Us, obj ] = lagrange_inner_loop( Hi, A, k, V, params )
+function [ us, Us, obj ] = graph_cut_k( Hi, A, k, V )
 %LAGRANGE_INNER_LOOP Summary of this function goes here
 %   Detailed explanation goes here
 STEP = 2;
 
 mup = 1;
-[~, ~, fmu0] = f(0, Hi, A, k, V, params);
-[usp, Usp, fmup] = f(mup, Hi, A, k, V, params);
+[~, ~, fmu0] = f(0, Hi, A, k, V);
+[usp, Usp, fmup] = f(mup, Hi, A, k, V);
 
 ca_monte = false;
 while ~ca_monte
@@ -14,14 +14,13 @@ while ~ca_monte
     else
         fmu0    = fmup;
         mup     = STEP * mup;
-        [usp, Usp, fmup] = f(mup, Hi, A, k, V, params);
+        [usp, Usp, fmup] = f(mup, Hi, A, k, V);
     end
 end
 
-
 mun = -1;
-[~, ~, fmu0] = f(0, Hi, A, k, V, params);
-[usn, Usn, fmun] = f(mun, Hi, A, k, V, params);
+[~, ~, fmu0] = f(0, Hi, A, k, V);
+[usn, Usn, fmun] = f(mun, Hi, A, k, V);
 
 ca_monte = false;
 while ~ca_monte
@@ -30,7 +29,7 @@ while ~ca_monte
     else
         fmu0    = fmun;
         mun     = STEP * mun;
-        [usn, Usn, fmun] = f(mun, Hi, A, k, V, params);
+        [usn, Usn, fmun] = f(mun, Hi, A, k, V);
     end
 end
 
@@ -48,9 +47,9 @@ funct = [fmun, 0, 0, 0, fmup];
 resu = {usn, 0, 0, 0, usp};
 resU = {Usn, 0, 0, 0, Usp};
 
-[resu{2}, resU{2}, funct(2)] = f(grid(2), Hi, A, k, V, params);
-[resu{3}, resU{3}, funct(3)] = f(grid(3), Hi, A, k, V, params);
-[resu{4}, resU{4}, funct(4)] = f(grid(4), Hi, A, k, V, params);
+[resu{2}, resU{2}, funct(2)] = f(grid(2), Hi, A, k, V);
+[resu{3}, resU{3}, funct(3)] = f(grid(3), Hi, A, k, V);
+[resu{4}, resU{4}, funct(4)] = f(grid(4), Hi, A, k, V);
 
 compx = grid;
 compf = funct;
@@ -68,8 +67,8 @@ while grid(5) - grid(1) > 1e-4
     funct(3) = temp(2);
     funct(5) = temp(3);
     
-    [resu{2}, resU{2}, funct(2)] = f(grid(2), Hi, A, k, V, params);
-    [resu{4}, resU{4}, funct(4)] = f(grid(4), Hi, A, k, V, params);
+    [resu{2}, resU{2}, funct(2)] = f(grid(2), Hi, A, k, V);
+    [resu{4}, resU{4}, funct(4)] = f(grid(4), Hi, A, k, V);
     
     compx = cat(2, compx, grid(2), grid(4));
     compf = cat(2, compf, funct(2), funct(4));
@@ -86,15 +85,9 @@ obj = funct(idx);
 
 end
 
-function [us, Us, obj] = f(x, Hi, A, k, V, params)
+function [us, Us, obj] = f(x, Hi, A, k, V)
 
-switch params.relaxation
-    case 'spectral'
-        [us, Us, obj] = spectral_inner_loop(Hi - x*ones(size(Hi)), A);
-    case 'graph-cut'
-        [us, Us, obj] = graph_cut(Hi- x*ones(size(Hi)), A);
-end
-
+[us, Us, obj] = graph_cut(Hi- x*ones(size(Hi)), A);
 obj = obj + x * (2 * k - V);
 
 end

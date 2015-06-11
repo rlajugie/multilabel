@@ -1,4 +1,4 @@
-function [u, U, obj] = sdp_k_mosek(Hi, A, k, V) 
+function [u, U, obj] = sdp_mosek_k(Hi, A, k, V) 
 
 [B, ~] = size(A);
  
@@ -35,7 +35,6 @@ lsubj = ones(1, B);
 lsubl = 1:B;
 lsubk = (B+1) * ones(1, B);
 lval  = ones(1, B);
-
 
 % adding all constraints together
 prob.bara.subi = [dsubi, lsubi];

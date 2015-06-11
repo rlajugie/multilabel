@@ -17,12 +17,14 @@ for i = 1:V+1
             case 'sdp'
                 switch params.solver
                     case 'cvx'
-                        [u{i}, U{i}, obj(i)] = sdp_k_cvx(Hi, A, k(i), V);
+                        [u{i}, U{i}, obj(i)] = sdp_cvx_k(Hi, A, k(i), V);
                     case 'mosek'
-                        [u{i}, U{i}, obj(i)] = sdp_k_mosek(Hi, A, k(i), V);
+                        [u{i}, U{i}, obj(i)] = sdp_mosek_k(Hi, A, k(i), V);
                 end
-            case {'spectral', 'graph-cut'}
-                [ u{i}, U{i}, obj(i) ] = no_need_for_lagrange(Hi, A, k(i), V, params);
+            case 'graph-cut'
+                [u{i}, U{i}, obj(i)] = graph_cut_k(Hi, A, k(i), V);
+            case 'spectral'
+                [u{i}, U{i}, obj(i)] = spectral_k(Hi, A, k(i), V);
         end
     else
         u{i}   = sign(Hi');

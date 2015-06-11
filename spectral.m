@@ -1,4 +1,4 @@
-function [u, U, obj] = spectral_inner_loop(H, A)
+function [u, U, obj] = spectral(H, A)
 
 B   = size(A,1);
 B1  = (1 / B);

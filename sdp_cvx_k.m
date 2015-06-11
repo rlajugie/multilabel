@@ -1,4 +1,4 @@
-function [u, U, obj] = sdp_k_cvx(Hi, A, k, V)
+function [u, U, obj] = sdp_cvx_k(Hi, A, k, V)
 
 [B, ~] = size(A);
 

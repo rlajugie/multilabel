@@ -17,7 +17,7 @@ if numel(A) > 1
                     [u, U, obj] = sdp_lowrank(H, A);
             end
         case 'spectral'
-            [u, U, obj] = spectral_inner_loop(H, A);
+            [u, U, obj] = spectral(H, A);
     end
 else
     u   = sign(H');

@@ -41,7 +41,7 @@ params.MSK_IPAR_LOG = 0;
 if isdeployed()
     params.MSK_IPAR_NUM_THREADS = 1;
 else
-    params.MSK_IPAR_NUM_THREADS = 1;
+    params.MSK_IPAR_NUM_THREADS = 4;
 end
 
 % solving the problem

@@ -11,12 +11,11 @@ o_reg = lambda_w / 2 * trace(W'*W) + lambda_a / 2 * trace(A' * A);
 o_mi    = zeros(1, N);
 o_spec  = zeros(1, N);
 
-mean_time   = 0;
 
 for i = 1:N
-    tic;
-    if mod(i, 10)==0
-        fprintf('%8d mean-time=%8.4f\n', i, mean_time);
+    
+    if mod(i, 100)==0
+        fprintf('computing objective - sample %8d/%8d\n', i, N);
     end
     
     % picking example i
@@ -34,5 +33,4 @@ for i = 1:N
     
     obj = o_reg + sum(o_spec) / N - sum(o_mi) / N;
     
-    mean_time = ((i-1) * mean_time + toc) / i;
 end

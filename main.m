@@ -26,7 +26,7 @@ params.loss             = 'hamming';    % loss on labelings [f1, hamming]
 params.relaxation       = 'graph-cut';   % relaxation type [graph-cut, sdp, spectral]
 params.solver           = 'low-rank';   % sdp solver [cvx, mosek, low-rank]
 
-params.data_path        = '/sequoia/data1/bojanows/NIPS2014/mulan/yeast_dataset.mat'; % path to data
+params.data_path        = 'datasets/yeast_dataset.mat'; % path to data
 
 params.T                = 1000000;  % number of subgradient steps
 params.time             = 50000;    % compute loss every [time] steps
@@ -37,7 +37,6 @@ params.proj_A           = 'negative';   % type of projection for A [positive, ne
 params.init_a           = 'rand';       % initialization for A [rand, eye]
 params.init_w           = 'rand';       % initialization for W [rand, svm]
 
-params.nthreads         = 4;                                                % number of threads for mosek solver
 params.mosek_license    = '/sequoia/data1/bojanows/local/mosek/7/licenses'; % mosek license file
 
 % launching the subgradient descent

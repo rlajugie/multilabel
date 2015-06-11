@@ -1,12 +1,14 @@
 
 mosek_path      = '/sequoia/data1/bojanows/local/mosek/7/toolbox/r2009b';
-cvx_path        = '';
-gc_path         = '~/Documents/thesis/NIPS2014/submod/Code/graph-cuts/matlab_wrapper/';
-lr_sdp_path     = '~/Documents/thesis/NIPS2014/submod/Code/low-rank-sdp/';
-liblinear_path  = '/sequoia/data1/bojanows/local/liblinear-1.96/matlab/';
+cvx_path        = '/scratch/bojanows/local/cvx';
+gc_path         = '~/Documents/thesis/NIPS2014/submod/Code/graph-cuts/matlab_wrapper';
+lr_sdp_path     = '~/Documents/thesis/NIPS2014/submod/Code/low-rank-sdp';
+liblinear_path  = '/sequoia/data1/bojanows/local/liblinear-1.96/matlab';
 
 % setting up the path
 path_setup;
+
+%%
 
 % method hyperparameters
 lambda_w    = 10e-4;
@@ -21,8 +23,8 @@ params.seed             = 1;    % random seed
 params.max_trials       = 200;  % number of samples for sdp rounding
 
 params.loss             = 'hamming';    % loss on labelings [f1, hamming]
-params.relaxation       = 'spectral';   % relaxation type [graph-cut, sdp, spectral]
-params.solver           = 'mosek';   % sdp solver [cvx, mosek, low-rank]
+params.relaxation       = 'graph-cut';   % relaxation type [graph-cut, sdp, spectral]
+params.solver           = 'low-rank';   % sdp solver [cvx, mosek, low-rank]
 
 params.data_path        = '/sequoia/data1/bojanows/NIPS2014/mulan/yeast_dataset.mat'; % path to data
 
@@ -31,7 +33,7 @@ params.time             = 50000;    % compute loss every [time] steps
 params.be               = -0.5;     % step-size exponent see function get_stepsize for details [-1, -0.75, -0.5]
 
 params.quadratic        = true;         % use quadratic penalty (A) or not
-params.proj_A           = 'positive';   % type of projection for A [positive, negative, none]
+params.proj_A           = 'negative';   % type of projection for A [positive, negative, none]
 params.init_a           = 'rand';       % initialization for A [rand, eye]
 params.init_w           = 'rand';       % initialization for W [rand, svm]
 

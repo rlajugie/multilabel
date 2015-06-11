@@ -26,14 +26,14 @@ params.solver           = 'mosek';   % sdp solver [cvx, mosek, low-rank]
 
 params.data_path        = '/sequoia/data1/bojanows/NIPS2014/mulan/yeast_dataset.mat'; % path to data
 
-params.T                = 100000;   % number of subgradient steps
-params.time             = 10000;    % compute loss every [time] steps
-params.be               = -0.5;        % step-size exponent see function get_stepsize for details [-1, -0.75, -0.5]
+params.T                = 1000000;  % number of subgradient steps
+params.time             = 50000;    % compute loss every [time] steps
+params.be               = -0.5;     % step-size exponent see function get_stepsize for details [-1, -0.75, -0.5]
 
 params.quadratic        = true;         % use quadratic penalty (A) or not
 params.proj_A           = 'positive';   % type of projection for A [positive, negative, none]
 params.init_a           = 'rand';       % initialization for A [rand, eye]
-params.init_w           = 'rand';        % initialization for W [rand, svm]
+params.init_w           = 'rand';       % initialization for W [rand, svm]
 
 params.nthreads         = 4;                                                % number of threads for mosek solver
 params.mosek_license    = '/sequoia/data1/bojanows/local/mosek/7/licenses'; % mosek license file
